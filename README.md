@@ -1,3 +1,12 @@
+# Information about this app
+
+This application is simple to use, only need to clone the repository, write in the terminal 'npm start' and can see all information of your favorite character from Star Wars World.
+
+I create this web app with React, Apollo and GraphQL. The design only use CSS and the help of the mockup you send me.
+
+Thanks to this i learn a new technology like GraphQL, i thought was very tough but really help me in the process.
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -14,10 +23,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 ### `npm run build`
 
