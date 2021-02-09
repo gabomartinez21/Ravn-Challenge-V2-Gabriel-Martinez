@@ -1,9 +1,12 @@
 import React from 'react';
 import Spinner from './spinner';
 
+/*
+    This component is helpful to encapsulate the result of useQuery
+*/
 const TypeView = ({loading, error, data, children}) => {
     if (error) {
-        return <p className="error">ERROR: {error.message}</p>;
+        return (<p className="error">{error.message}</p>);
     }
     if (loading) {
         return (

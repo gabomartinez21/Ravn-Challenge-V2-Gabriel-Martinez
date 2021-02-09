@@ -78,6 +78,25 @@ ul{
   text-align:center;
 }
 
+h3{
+  padding:0 5px;
+}
+.info, .info-veh{
+  padding:0 5px;
+}
+.info li, .info-veh li{
+  color:#a4a4a4;
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+}
+.info-veh li{
+  padding:10px 0;
+}
+.info li p:last-child{
+  color:#000;
+  text-transform: capitalize;
+}
 
 /* SPINNER */
 

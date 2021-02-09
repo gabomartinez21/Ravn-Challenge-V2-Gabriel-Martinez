@@ -1,10 +1,9 @@
 import React from 'react';
-// import ListPeople from './components/listPeople';
 import {ApolloProvider, ApolloClient, InMemoryCache} from '@apollo/client';
-// import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Routes from './routes/Routes';
-// import Person from './pages/person';
 
+
+//With ApolloClient we can connect with a GraphQL API an get the information we want
 const cliente = new ApolloClient({
   uri:'https://swapi-graphql.netlify.app/.netlify/functions/index',
   cache:new InMemoryCache(),
@@ -13,12 +12,8 @@ const cliente = new ApolloClient({
 
 function App() {
   return (
-    
+      //Is necessary create the ApolloProvider tag in the top of our application
       <ApolloProvider client={cliente}>
-      
-        {/* <div className="App">
-          
-        </div> */}
         <Routes/>
       </ApolloProvider>
     

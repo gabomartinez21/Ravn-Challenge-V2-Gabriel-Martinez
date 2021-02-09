@@ -1,19 +1,17 @@
 import React from 'react';
 import { useQuery, gql } from '@apollo/client';
-import TypeView from '../components/typeView';
+import Spinner from '../components/spinner';
 
 
-const Person = (props) => {
-    const {match:{params}} = props;
-    const personId = params.id
-    const PERSON = gql`
-    query getPerson($personId: ID) {
-        person(personID: $personId) {
+//This is the query for the person we want information
+const PERSON = gql`
+    query getPerson($id: ID) {
+        person(id: $id) {
           name
           eyeColor
           hairColor
           skinColor
-          
+          birthYear
           homeworld {
             name
           }
@@ -28,27 +26,68 @@ const Person = (props) => {
             designation
             classification
           }
-        }
-      
-      
+        }      
     }
 
     `
+    
+
+const Person = (props) => {
+    //Took the information with props
+    const {match:{params}} = props;
+    const personId = params.id
+    
+    //And in this case i send extra information in useQuery like "variables"
     const {loading, error, data} = useQuery(PERSON, {
-        variables:{personId}
+        variables:{
+            id:personId
+        },
     });
-    if (loading) return 'Loading...';
-  if (error) return `Error! ${error}`;
-    console.log(data)
+    if (error) {
+        return (<p className="error">{error.message}</p>);
+    }
+    if (loading) {
+        return (
+            <>
+                <h1>Person</h1>
+                <div className="carga">
+                    <Spinner/>
+                    <p>Loading</p>
+                    
+                </div>
+            </>
+        );
+    }
     return ( 
         <>
-            <h1>Person</h1>
-            {JSON.stringify(data)}
-            {/* <TypeView data={data} loading={loading} error={error}> */}
-                {/* {data?.data?.person.map((res)=>(                        
-                ))} */}
+            <h1>{data.person.name}</h1>
+                <h3 key="gen-info">General Information</h3>
+                <ul className="info">
+                    <li>
+                        <p>Eye Color</p>
+                        <p>{data.person.eyeColor}</p>
+                    </li>
+                    <li>
+                        <p>Hair Color</p>
+                        <p>{data.person.hairColor}</p>
+                    </li>
+                    <li>
+                        <p>Skin Color</p>
+                        <p>{data.person.skinColor}</p>
+                    </li>
+                    <li>
+                        <p>Birth Day</p>
+                        <p>{data.person.birthYear}</p>
+                    </li>
+                </ul>
+                <h3 key="veh">Vehicles</h3>
+                <ul className="info-veh">
+                    {data.person.vehicleConnection.vehicles.map(vehicle=>(
+                        <li key={vehicle.id}>{vehicle.name}</li>
 
-            {/* </TypeView> */}
+                    ))}
+                </ul>
+            
         </>
      );
 }
