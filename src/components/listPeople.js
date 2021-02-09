@@ -35,7 +35,7 @@ const PEOPLES = gql`
 `
 const ListPeople = () => {
     const {loading, error, data} = useQuery(PEOPLES);
-
+    
     return (
         <>
             <h1>People of Star Wars</h1>
@@ -44,8 +44,9 @@ const ListPeople = () => {
                     {data?.allPeople?.people.map((res)=>(                        
                         <FieldPeople key={res.id} dataPeople={res}/>
                     ))}
-
                 </TypeView>
+
+                
             </ul>
         
         </>
